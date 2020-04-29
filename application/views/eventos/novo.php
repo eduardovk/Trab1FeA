@@ -13,6 +13,6 @@
     <label for="local">Local</label>
     <textarea name="local"></textarea><br />
 
-    <input type="submit" name="submit" value="Create news item" />
+    <input type="submit" name="submit" value="Cadastrar" />
 
 </form>
