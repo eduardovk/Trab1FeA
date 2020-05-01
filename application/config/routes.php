@@ -7,6 +7,7 @@ $route['news'] = 'news';
 $route['eventos/novo'] = 'eventos/novo';
 $route['eventos/(:any)'] = 'eventos/view/$1';
 $route['eventos'] = 'eventos';
+$route['login'] = 'login';
 $route['(:any)'] = 'pages/view/$1';
 $route['default_controller'] = 'pages/view';
 
