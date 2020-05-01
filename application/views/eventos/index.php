@@ -1,34 +1,60 @@
 <?php
 if($nome){
-    echo "<h3>Bem-vindo, $nome!</h3>";
-}
-if($admin){
-    ?><p><a href="<?php echo site_url('eventos/novo'); ?>">Novo</a></p><?php
+    //echo "<h3>Bem-vindo, $nome!</h3>";
 }
 ?>
-<h2><?php echo $title; ?></h2>
 
-<?php foreach ($eventos as $evento):
-    if(!empty($evento['imagem'])){
-        ?><img style="width: 400px; height: 400px; object-fit: cover;"
-         src="<?php echo base_url('assets/img/eventos/'. $evento['imagem']);?>" /><?php
-    }
-    ?>
-    <h3><?php echo $evento['titulo']; ?></h3>
-    <div class="main">
-        <?php echo $evento['descricao']; ?>
-    </div>
-    <p><a href="<?php echo site_url('eventos/'.$evento['url_amiga']); ?>">Ver mais</a></p>
-    <?php
-    if($admin){
-        ?>
-        <p><a href="<?php echo site_url('eventos/editar/'.$evento['id']); ?>">Editar</a></p>
-        <p><a href="#" class="delete_data" id="<?php echo $evento['id']; ?>">Excluir</a></p>
+<!-- Page Content -->
+<div class="container container-white">
+
+    <?php if($admin){
+        ?><a class="btn btn-dark btn-sm" href="<?php echo site_url('eventos/novo'); ?>"><i class="fa fa-plus"></i> Novo</a><?php
+    } ?>
+
+    <!-- Content Row EVENTOS-->
+    <div class="row">
         <?php
-    }
-    ?>
+        foreach ($eventos as $evento):
+            ?>
+            <div class="col-md-12"><br></div>
+            <div class="col-md-7">
+                <a href="#">
+                    <?php
+                    if(!empty($evento['imagem'])){
+                        ?><img class="img-fluid rounded mb-3 mb-md-0" style="width: 100%; max-height: 360px; object-fit: cover;"  src="<?php echo base_url('assets/img/eventos/'. $evento['imagem']);?>" /><?php
+                    }else{
+                        ?><img class="img-fluid rounded mb-3 mb-md-0" style="width: 100%; max-height: 360px; object-fit: cover;"  src="" alt=""><?php
+                    }
+                    ?>
+                </a>
+            </div>
+            <div class="col-md-5">
+                <?php
+                if($admin){
+                    ?>
+                    <div style="float: right;">
+                        <a class="btn btn-dark btn-sm" href="<?php echo site_url('eventos/editar/'.$evento['id']); ?>"><i class="fa fa-edit"></i> Editar</a>
+                        <a class="btn btn-dark btn-sm delete_data" href="#"  id="<?php echo $evento['id']; ?>"><i class="fa fa-minus-circle"></i> Excluir</a>
+                    </div>
+                    <?php
+                }
+                ?>
+                <h4><?php echo $evento['titulo']; ?></h4>
+                <p><?php echo $evento['descricao']; ?></p>
+                <a class="btn btn-danger btn-sm" href="<?php echo site_url('eventos/'.$evento['url_amiga']); ?>">Ver mais</a></p>
 
-<?php endforeach; ?>
+
+            </div>
+            <!-- NOTÍCIAS -->
+            <div class="col-md-12 mb-12"><br><hr></div>
+            <!-- /.col-md-4 -->
+
+        <?php endforeach; ?>
+
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
 
 <script>
 $(document).ready(function(){
