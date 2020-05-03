@@ -9,7 +9,7 @@
         <div class="col-md-12 mb-4">
             <div class="card h-100">
                 <div class="card-body">
-                    <p class="card-text"><b>Título do Evento: </b><br> <input type="text" name="titulo" value="<?php echo $evento['titulo']; ?>"/><br /></p>
+                    <p class="card-text"><b>Título do Evento: </b><br> <input type="text" name="titulo" value="<?php echo $evento['titulo']; ?>" required /><br /></p>
                 </div>
             </div>
         </div>
