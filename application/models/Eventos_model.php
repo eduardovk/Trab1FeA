@@ -29,10 +29,14 @@ class Eventos_model extends CI_Model {
 
         $url_amiga = url_title($this->input->post('titulo'), 'dash', TRUE);
 
+        $data_evento = $this->input->post('data');
+        $hora_evento = $this->input->post('hora');
+        $data_hora = $data_evento." ".$hora_evento;
+
         $data = array(
             'titulo' => $this->input->post('titulo'),
             'descricao' => $this->input->post('descricao'),
-            'data_hora' => date('Y-m-d H:i:s'),
+            'data_hora' => $data_hora,
             'local' => $this->input->post('local'),
             'imagem' => $imagem,
             'url_amiga' => $url_amiga,
@@ -48,9 +52,14 @@ class Eventos_model extends CI_Model {
 
         $url_amiga = url_title($this->input->post('titulo'), 'dash', TRUE);
 
+        $data_evento = $this->input->post('data');
+        $hora_evento = $this->input->post('hora');
+        $data_hora = $data_evento." ".$hora_evento;
+
         $data = array(
             'titulo' => $this->input->post('titulo'),
             'descricao' => $this->input->post('descricao'),
+            'data_hora' => $data_hora,
             'local' => $this->input->post('local'),
             'imagem' => $imagem,
             'url_amiga' => $url_amiga,

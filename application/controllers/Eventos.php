@@ -11,7 +11,7 @@ class Eventos extends CI_Controller {
     public function index()
     {
         $data['eventos'] = $this->eventos_model->get_eventos();
-        
+
         foreach($data['eventos'] as &$evento){ //foreach usando referencia (&)
             $evento['data'] = formatar_data($evento['data_hora'], true);
             $evento['hora'] = formatar_hora($evento['data_hora'], false);
