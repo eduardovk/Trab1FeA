@@ -39,7 +39,7 @@
                 <a class="btn btn-danger btn-sm" href="<?php echo site_url('eventos/'.$evento['url_amiga']); ?>">Ver mais</a></p>
             </div>
 
-            <div class="col-md-12 mb-12"><br><br></div>
+            <div class="col-md-12 mb-12"><br><hr></div>
         <?php endforeach; ?>
 
     </div>

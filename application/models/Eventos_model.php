@@ -10,16 +10,16 @@ class Eventos_model extends CI_Model {
     {
         if ($url_amiga === FALSE)
         {
-            $query = $this->db->get('eventos');
+            $query = $this->db->get_where('eventos', array('ativo' => 1));
             return $query->result_array();
         }
 
-        $query = $this->db->get_where('eventos', array('url_amiga' => $url_amiga));
+        $query = $this->db->get_where('eventos', array('url_amiga' => $url_amiga, 'ativo' => 1));
         return $query->row_array();
     }
 
     public function get_evento_by_id($id){
-        $query = $this->db->get_where('eventos', array('id' => $id));
+        $query = $this->db->get_where('eventos', array('id' => $id, 'ativo' => 1));
         return $query->row_array();
     }
 
@@ -75,7 +75,6 @@ class Eventos_model extends CI_Model {
         if(!empty($imagem)){
             unlink(FCPATH."assets/img/eventos/".$imagem);
         }
-
-        return $this->db->delete('eventos', array('id' => $id));
+        return $this->db->update('eventos', array('ativo' => 0), 'id='.$id);
     }
 }
