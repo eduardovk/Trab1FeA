@@ -1,9 +1,3 @@
-<?php
-if($nome){
-    //echo "<h3>Bem-vindo, $nome!</h3>";
-}
-?>
-
 <!-- Page Content -->
 <div class="container container-white">
 
@@ -13,9 +7,8 @@ if($nome){
 
     <!-- Content Row EVENTOS-->
     <div class="row">
-        <?php
-        foreach ($eventos as $evento):
-            ?>
+
+        <?php foreach ($eventos as $evento): ?>
             <div class="col-md-12"><br></div>
             <div class="col-md-7">
                 <a href="#">
@@ -41,19 +34,17 @@ if($nome){
                 }
                 ?>
                 <h4><?php echo $evento['titulo']; ?></h4>
+                <p><b>Data:</b> <?php echo $evento['data']; ?><br><b>Horário:</b> <?php echo $evento['hora']; ?></p>
                 <p><?php echo $evento['descricao']; ?></p>
                 <a class="btn btn-danger btn-sm" href="<?php echo site_url('eventos/'.$evento['url_amiga']); ?>">Ver mais</a></p>
-
-
             </div>
-            <!-- NOTÍCIAS -->
-            <div class="col-md-12 mb-12"><br><hr></div>
-            <!-- /.col-md-4 -->
 
+            <div class="col-md-12 mb-12"><br><br></div>
         <?php endforeach; ?>
 
     </div>
     <!-- /.row -->
+
 </div>
 <!-- /.container -->
 

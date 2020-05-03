@@ -78,7 +78,6 @@
         </div><br>
         <?php echo anchor('eventos/', 'Cancelar', 'class="btn btn-danger btn-sm"'); ?>
         <button type="submit" class="btn btn-danger btn-sm">Salvar</button>
-        <?php //echo anchor('eventos/', 'Salvar', 'class="btn btn-danger btn-sm"'); ?>
 
     </form>
 

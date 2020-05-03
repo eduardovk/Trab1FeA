@@ -11,6 +11,12 @@ class Eventos extends CI_Controller {
     public function index()
     {
         $data['eventos'] = $this->eventos_model->get_eventos();
+        
+        foreach($data['eventos'] as &$evento){ //foreach usando referencia (&)
+            $evento['data'] = formatar_data($evento['data_hora'], true);
+            $evento['hora'] = formatar_hora($evento['data_hora'], false);
+        }
+
         $data['title'] = 'Eventos';
 
         $data['nome'] = $this->acesso->logged_user();
@@ -32,6 +38,9 @@ class Eventos extends CI_Controller {
         {
             show_404();
         }
+
+        $data['evento']['data'] = formatar_data($data['evento']['data_hora'], true);
+        $data['evento']['hora'] = formatar_hora($data['evento']['data_hora'], false);
 
         $ingressos = $this->categoriasIngressos_model->get_cat_ingressos_by_evento($data['evento']['id']);
         if($ingressos){
@@ -104,6 +113,10 @@ class Eventos extends CI_Controller {
         {
             show_404();
         }
+
+        $data['evento']['data'] = explode(" ", $data['evento']['data_hora'])[0];
+        $data['evento']['hora'] = formatar_hora($data['evento']['data_hora'], false);
+
         $data['title'] = "Editar evento: ".$data['evento']['titulo'];
 
         $this->form_validation->set_rules('titulo', 'Título', 'required');

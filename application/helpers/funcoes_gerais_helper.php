@@ -13,3 +13,25 @@ if ( ! function_exists('formatar_moeda')){
         return $valor;
     }
 }
+
+if ( ! function_exists('formatar_data')){
+    function formatar_data($data, $padrao_br){
+        if($padrao_br){
+            $data = date('d/m/Y', strtotime($data));
+        }else{
+            $data = date('Y/m/d', strtotime($data));
+        }
+        return $data;
+    }
+}
+
+if ( ! function_exists('formatar_hora')){
+    function formatar_hora($hora, $segundos){
+        if($segundos){
+            $hora = date('H:i:s', strtotime($hora));
+        }else{
+            $hora = date('H:i', strtotime($hora));
+        }
+        return $hora;
+    }
+}

@@ -28,7 +28,7 @@
             }
             ?>
             <h5><?php echo $evento['titulo']; ?></h5>
-            <p><b>Início:</b> <?php echo "TODO"; ?><br><b>Horário:</b> <?php echo "TODO"; ?></p>
+            <p><b>Data:</b> <?php echo $evento['data']; ?><br><b>Horário:</b> <?php echo $evento['hora']; ?></p>
             <p><b>Local do evento:</b><br><?php echo $evento['local']; ?></p>
             <?php echo anchor('eventos/ingressos/'.$evento['url_amiga'], 'Quero participar!', 'class="btn btn-danger btn-sm" style="margin-right:5px;margin-top:5px;"'); ?>
         </div>
@@ -47,9 +47,9 @@
                     echo '<p class="card-text">' . $evento['descricao'] . '</p>';
                     ?>
                 </div>
-            </div><br>
+            </div>
             <?php if(!isset($ingressos) || sizeof($ingressos) < 1){
-                echo anchor('eventos/', '< Voltar', 'class="btn btn-danger btn-sm"');
+                echo "<br>".anchor('eventos/', '< Voltar', 'class="btn btn-danger btn-sm"');
             }
             ?>
         </div>
