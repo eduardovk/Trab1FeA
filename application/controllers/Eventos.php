@@ -148,7 +148,6 @@ class Eventos extends CI_Controller {
                     $ext = pathinfo($_FILES["imagem"]["name"], PATHINFO_EXTENSION);
                     $nova_imagem = date('Y-m-d H.i.s').'.'.$ext;
                     $caminho = FCPATH."assets/img/eventos/".$nova_imagem;
-                    //echo $caminho; die();
                     if(move_uploaded_file($_FILES["imagem"]["tmp_name"], $caminho)){
                         $imagem = $nova_imagem;
                         unlink(FCPATH."assets/img/eventos/".$imagem_anterior);
@@ -244,6 +243,54 @@ class Eventos extends CI_Controller {
             }
         }
         redirect('eventos');
+    }
+
+    public function ingressos($url_amiga = NULL){
+        $this->load->model('categoriasIngressos_model');
+        $this->load->model('inscricoes_model');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $data['evento'] = $this->eventos_model->get_eventos($url_amiga);
+
+        if(!$this->acesso->logged_user()){
+            redirect('login');
+        }
+
+        if($url_amiga === NULL){
+            redirect('eventos');
+        }
+
+        if (empty($data['evento']))
+        {
+            show_404();
+        }
+
+        $data['evento']['data'] = formatar_data($data['evento']['data_hora'], true);
+        $data['evento']['hora'] = formatar_hora($data['evento']['data_hora'], false);
+
+        $ingressos = $this->categoriasIngressos_model->get_cat_ingressos_by_evento($data['evento']['id']);
+        if($ingressos){
+            foreach($ingressos as &$ingresso){ //foreach usando referencia (&)
+                $ingresso['valor'] = formatar_moeda($ingresso['valor'], true);
+                $ingresso['qtd_restante'] = $ingresso['qtd']; //( TODO diminuir qtd de ingressos comprados)
+            }
+            $data['ingressos'] = $ingressos;
+        }
+
+        $this->form_validation->set_rules('nome', 'Nome do Inscrito', 'required');
+        if ($this->form_validation->run() === FALSE)
+        {
+            $this->load->view('templates/header', $data);
+            $this->load->view('eventos/ingressos', $data);
+            $this->load->view('templates/footer');
+        }
+        else
+        {
+            $this->inscricoes_model->set_inscricao();
+            redirect('eventos');
+        }
+
     }
 
     public function deletar($id){

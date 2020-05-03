@@ -45,6 +45,9 @@
                     <hr>
                     <?php
                     echo '<p class="card-text">' . $evento['descricao'] . '</p>';
+                    if(!isset($ingressos) || sizeof($ingressos) < 1){
+                        echo "<br>".anchor('eventos/ingressos/'.$evento['url_amiga'], 'Quero participar!', 'class="btn btn-danger btn-sm" style="margin-right:5px;margin-top:5px;"');
+                    }
                     ?>
                 </div>
             </div>
@@ -75,6 +78,7 @@
                                 echo '<p class="card-text">- ' . $ingresso['titulo'] .' - R$ '.$ingresso['valor'].'</p>';
                             }
                         }
+                        echo "<br>".anchor('eventos/ingressos/'.$evento['url_amiga'], 'Quero participar!', 'class="btn btn-danger btn-sm" style="margin-right:5px;margin-top:5px;"');
                         ?>
                     </div>
                 </div><br>
