@@ -20,11 +20,13 @@
                         <?php
                         foreach($inscricoes as $inscricao){
                             ?>
-                            <td><?php echo $inscricao['titulo_evento'] ?></td>
-                            <td><?php echo $inscricao['nome'] ?></td>
-                            <td><?php echo $inscricao['titulo_ingresso'] ?></td>
-                            <td>R$ <?php echo $inscricao['valor'] ?></td>
-                            <td><?php echo $inscricao['pago'] ?></td>
+                            <tr>
+                                <td><?php echo $inscricao['titulo_evento'] ?></td>
+                                <td><?php echo $inscricao['nome'] ?></td>
+                                <td><?php echo $inscricao['titulo_ingresso'] ?></td>
+                                <td>R$ <?php echo $inscricao['valor'] ?></td>
+                                <td><?php echo $inscricao['pago'] ?></td>
+                            </tr>
                             <?php
                         }
                         ?>

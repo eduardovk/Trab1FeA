@@ -23,9 +23,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo site_url(); ?>/eventos">Eventos</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo site_url(); ?>/sobre">Sobre</a>
-                    </li>
 
                     <?php
                     if(isset($nome) && !empty($nome)){
