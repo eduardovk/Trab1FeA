@@ -15,18 +15,19 @@
             </a>
         </div>
         <div class="col-md-5">
-            <br>
             <?php
             if($admin){
                 ?>
                 <div style="float: right;">
                     <a class="btn btn-dark btn-sm" href="<?php echo site_url('eventos/editar/'.$evento['id']); ?>"><i class="fa fa-edit"></i> Editar</a>
                     <a class="btn btn-dark btn-sm" href="<?php echo site_url('eventos/categorias_ingressos/'.$evento['id']); ?>"><i class="fa fa-ticket"></i> Ingressos</a>
+                    <a class="btn btn-dark btn-sm" href="<?php echo site_url('eventos/inscricoes/'.$evento['id']); ?>"><i class="fa fa-list"></i> Inscrições</a>
                     <a class="btn btn-dark btn-sm delete_data" href="#"  id="<?php echo $evento['id']; ?>"><i class="fa fa-minus-circle"></i> Excluir</a>
-                </div>
+                </div><br>
                 <?php
             }
             ?>
+            <br>
             <h5><?php echo $evento['titulo']; ?></h5>
             <p><b>Data:</b> <?php echo $evento['data']; ?><br><b>Horário:</b> <?php echo $evento['hora']; ?></p>
             <p><b>Local do evento:</b><br><?php echo $evento['local']; ?></p>

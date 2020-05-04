@@ -28,8 +28,9 @@
                     <div style="float: right;">
                         <a class="btn btn-dark btn-sm" href="<?php echo site_url('eventos/editar/'.$evento['id']); ?>"><i class="fa fa-edit"></i> Editar</a>
                         <a class="btn btn-dark btn-sm" href="<?php echo site_url('eventos/categorias_ingressos/'.$evento['id']); ?>"><i class="fa fa-ticket"></i> Ingressos</a>
+                        <a class="btn btn-dark btn-sm" href="<?php echo site_url('eventos/inscricoes/'.$evento['id']); ?>"><i class="fa fa-list"></i> Inscrições</a>
                         <a class="btn btn-dark btn-sm delete_data" href="#"  id="<?php echo $evento['id']; ?>"><i class="fa fa-minus-circle"></i> Excluir</a>
-                    </div>
+                    </div><br><br>
                     <?php
                 }
                 ?>

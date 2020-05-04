@@ -5,10 +5,12 @@ $route['news/create'] = 'news/create';
 $route['news/(:any)'] = 'news/view/$1';
 $route['news'] = 'news';
 $route['eventos/novo'] = 'eventos/novo';
+$route['eventos/inscricoes/(:any)'] = 'inscricoes/inscricoes_evento/$1';
 $route['eventos/(:any)'] = 'eventos/view/$1';
 $route['eventos'] = 'eventos';
 $route['login'] = 'login';
 $route['logout'] = 'login/logout';
+$route['inscricoes'] = 'inscricoes';
 $route['(:any)'] = 'pages/view/$1';
 $route['default_controller'] = 'pages/view';
 

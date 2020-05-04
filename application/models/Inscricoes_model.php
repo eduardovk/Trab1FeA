@@ -21,12 +21,26 @@ class Inscricoes_model extends CI_Model {
     public function get_inscricoes_by_usuario($id_usuario)
     {
         $query = $this->db->get_where('inscricoes', array('id_usuario' => $id_usuario));
+
+        $this->db->select('i.*, ci.titulo AS titulo_ingresso, ci.valor, e.titulo AS titulo_evento');
+        $this->db->from('inscricoes AS i');
+        $this->db->join('categorias_ingressos AS ci', 'ci.id = i.id_ingresso', 'inner');
+        $this->db->join('eventos AS e', 'ci.id_evento = e.id', 'inner');
+        $this->db->where(array('i.id_usuario' => $id_usuario));
+        $query = $this->db->get();
+
         return $query->result_array();
     }
 
     public function get_inscricoes_by_evento($id_evento)
     {
-        $query = $this->db->get_where('inscricoes', array('id_evento' => $id_evento));
+        $this->db->select('i.*, ci.titulo AS titulo_ingresso, ci.valor');
+        $this->db->from('inscricoes AS i');
+        $this->db->join('categorias_ingressos AS ci', 'ci.id = i.id_ingresso', 'inner');
+        $this->db->join('eventos AS e', 'ci.id_evento = e.id', 'inner');
+        $this->db->where(array('e.id' => $id_evento));
+        $query = $this->db->get();
+
         return $query->result_array();
     }
 

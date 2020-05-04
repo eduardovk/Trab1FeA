@@ -33,7 +33,6 @@ class CategoriasIngressos_model extends CI_Model {
         $qtd_restante = $qtd_total - $qtd_vendida;
 
         return $qtd_restante;
-
     }
 
     public function set_cat_ingressos($data){
