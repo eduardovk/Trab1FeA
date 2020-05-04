@@ -35,3 +35,12 @@ if ( ! function_exists('formatar_hora')){
         return $hora;
     }
 }
+
+if ( ! function_exists('checar_mensagens')){
+    function checar_mensagens($instancia){
+        $data['erro'] = $instancia->session->flashdata('erro');
+        $data['sucesso'] = $instancia->session->flashdata('sucesso');
+        $instancia->load->view('templates/msg_erro', $data);
+        $instancia->load->view('templates/msg_sucesso', $data);
+    }
+}
