@@ -33,4 +33,14 @@ class Login extends CI_Controller{
         }
     }
 
+    public function logout(){
+        if($this->acesso->logged_user()){
+            $this->session->unset_userdata('nome');
+            $this->session->unset_userdata('admin');
+            $this->session->unset_userdata('id_usuario');
+            $this->session->sess_destroy();
+        }
+        redirect("login");
+    }
+
 }
