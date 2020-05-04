@@ -24,11 +24,9 @@
 
             <form action="<?php echo site_url('eventos/atualizar_ingressos/'.$evento['id']); ?>" method="post">
 
-
                 <div class="card h-100">
                     <div class="card-body table-responsive">
                         <h5 class="card-title">EDITAR INGRESSOS</h5>
-                        <hr>
                         <table class="table" id="tabela_ingressos" style="overflow:auto;">
                             <tbody id="ingressos">
                                 <tr>
@@ -81,10 +79,8 @@
 
     </form>
 
-
 </div>
 <!-- /.col-md-4 -->
-
 </div>
 <!-- /.row -->
 

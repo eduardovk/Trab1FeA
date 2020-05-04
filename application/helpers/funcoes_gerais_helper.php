@@ -44,3 +44,28 @@ if ( ! function_exists('checar_mensagens')){
         $instancia->load->view('templates/msg_sucesso', $data);
     }
 }
+
+if ( ! function_exists('identificar_usuario')){
+    function identificar_usuario($instancia, &$data){
+        $data['nome'] = $instancia->acesso->logged_user();
+        $data['admin'] = $instancia->acesso->is_admin();
+    }
+}
+
+if ( ! function_exists('check_404')){
+    function check_404($variavel){
+        if(!isset($variavel) || empty($variavel) || $variavel == NULL){
+            show_404();
+        }
+    }
+}
+
+if ( ! function_exists('carregar_views')){
+    function carregar_views($instancia, $body_view, &$data){
+        $instancia->load->view('templates/header', $data);
+        //msgs de erro e sucesso
+        checar_mensagens($instancia);
+        $instancia->load->view($body_view, $data);
+        $instancia->load->view('templates/footer');
+    }
+}

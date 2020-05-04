@@ -33,6 +33,7 @@
                     ?>
                     <b>Enviar nova imagem: </b><br>
                     <input type="file" name="imagem"><br />
+                    <input type="hidden" name="excluir_img" id="excluir_img" value="">
                 </div>
             </div>
         </div>
