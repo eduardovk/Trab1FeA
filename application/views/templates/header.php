@@ -16,12 +16,12 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo site_url(); ?>/eventos" target="_parent">Inicial
+                        <a class="nav-link" href="<?php echo site_url(); ?>eventos" target="_parent">Inicial
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo site_url(); ?>/eventos">Eventos</a>
+                        <a class="nav-link" href="<?php echo site_url(); ?>eventos">Eventos</a>
                     </li>
 
                     <?php
@@ -32,15 +32,15 @@
                                 <b><?php echo $nome; ?></b>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                                <a class="dropdown-item" href="<?php echo site_url(); ?>/inscricoes">Minhas inscrições</a>
-                                <a class="dropdown-item" href="<?php echo site_url(); ?>/logout">Sair</a>
+                                <a class="dropdown-item" href="<?php echo site_url(); ?>inscricoes">Minhas inscrições</a>
+                                <a class="dropdown-item" href="<?php echo site_url(); ?>logout">Sair</a>
                             </div>
                         </li>
                         <?php
                     }else{
                         ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo site_url(); ?>/login"><b>Login</b></a>
+                            <a class="nav-link" href="<?php echo site_url(); ?>login"><b>Login</b></a>
                         </li>
                         <?php
                     }
