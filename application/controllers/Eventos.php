@@ -52,7 +52,8 @@ class Eventos extends CI_Controller {
         if($ingressos){
             foreach($ingressos as &$ingresso){ //foreach usando referencia (&)
                 $ingresso['valor'] = formatar_moeda($ingresso['valor'], true);
-                $ingresso['qtd_restante'] = $ingresso['qtd']; //( TODO diminuir qtd de ingressos comprados)
+                $ingresso['qtd_restante'] = $this->categoriasIngressos_model->get_qtd_ingressos($ingresso['id']);
+                //$ingresso['qtd_restante'] = $ingresso['qtd']; //( TODO diminuir qtd de ingressos comprados)
             }
             $data['ingressos'] = $ingressos;
         }
@@ -210,7 +211,7 @@ class Eventos extends CI_Controller {
 
         foreach($data['cat_ingressos'] as &$cat_ingresso){ //foreach usando referencia (&)
             $cat_ingresso['valor'] = formatar_moeda($cat_ingresso['valor'], true);
-            $cat_ingresso['qtd_restante'] = $cat_ingresso['qtd']; //( TODO diminuir qtd de ingressos comprados)
+            $cat_ingresso['qtd_restante'] = $this->categoriasIngressos_model->get_qtd_ingressos($cat_ingresso['id']);
         }
 
         $this->load->view('templates/header', $data);
