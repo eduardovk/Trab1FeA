@@ -5,11 +5,6 @@
         <title></title>
     </head>
     <body>
-        <?php
-            if(!empty($erro)){
-                echo "<h3 style='color:red'>".$erro."</h3>";
-            }
-         ?>
         <form action="<?php echo site_url("login/entrar"); ?>" method="post">
             <input type="email" name="email" placeholder="E-mail" required>
             <input type="password" name="senha" placeholder="Senha" required>

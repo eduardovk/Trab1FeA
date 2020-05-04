@@ -17,12 +17,16 @@ class Eventos extends CI_Controller {
             $evento['hora'] = formatar_hora($evento['data_hora'], false);
         }
 
-        $data['title'] = 'Eventos';
-
         $data['nome'] = $this->acesso->logged_user();
         $data['admin'] = $this->acesso->is_admin();
 
         $this->load->view('templates/header', $data);
+
+        $data['erro'] = $this->session->flashdata('erro');
+        $data['sucesso'] = $this->session->flashdata('sucesso');
+        $this->load->view('templates/msg_erro', $data);
+        $this->load->view('templates/msg_sucesso', $data);
+
         $this->load->view('eventos/index', $data);
         $this->load->view('templates/footer');
     }
@@ -54,6 +58,12 @@ class Eventos extends CI_Controller {
         $data['title'] = $data['evento']['titulo'];
 
         $this->load->view('templates/header', $data);
+
+        $data['erro'] = $this->session->flashdata('erro');
+        $data['sucesso'] = $this->session->flashdata('sucesso');
+        $this->load->view('templates/msg_erro', $data);
+        $this->load->view('templates/msg_sucesso', $data);
+
         $this->load->view('eventos/view', $data);
         $this->load->view('templates/footer');
     }
@@ -91,8 +101,12 @@ class Eventos extends CI_Controller {
                 }
             }
 
-            $this->eventos_model->set_eventos($imagem);
-            $this->load->view('eventos/successo');
+
+
+            if($this->eventos_model->set_eventos($imagem)){
+                $this->session->set_flashdata('sucesso', 'Evento cadastrado com sucesso!');
+            }
+            redirect('eventos');
         }
     }
 
@@ -132,7 +146,6 @@ class Eventos extends CI_Controller {
         }
         else
         {
-
             $evento = $this->eventos_model->get_evento_by_id($id);
             $imagem_anterior = $evento['imagem'];
 
@@ -156,6 +169,9 @@ class Eventos extends CI_Controller {
             }
 
             $nova_url_amiga = $this->eventos_model->update_eventos($id, $imagem);
+            if($nova_url_amiga){
+                $this->session->set_flashdata('sucesso', 'Evento editado com sucesso!');
+            }
             redirect('eventos/'.$nova_url_amiga);
         }
 
@@ -219,7 +235,11 @@ class Eventos extends CI_Controller {
                         'qtd' => $data['qtd-novo-'.$indice],
                         'ativo' => 1
                     );
-                    $this->categoriasIngressos_model->set_cat_ingressos($novo_ingresso);
+
+                    if($this->categoriasIngressos_model->set_cat_ingressos($novo_ingresso)){
+                        $this->session->set_flashdata('sucesso', 'Ingresso(s) salvo(s) com sucesso!');
+                    }
+
                 }else{
                     //(UPDATE)
                     $id_ingresso = $input_arr[1];
@@ -237,7 +257,9 @@ class Eventos extends CI_Controller {
                         );
                     }
 
-                    $this->categoriasIngressos_model->update_cat_ingressos($id_ingresso, $atualizar_ingresso);
+                    if($this->categoriasIngressos_model->update_cat_ingressos($id_ingresso, $atualizar_ingresso)){
+                        $this->session->set_flashdata('sucesso', 'Ingresso(s) atualizado(s) com sucesso!');
+                    }
                 }
 
             }
@@ -287,22 +309,25 @@ class Eventos extends CI_Controller {
         }
         else
         {
-            $this->inscricoes_model->set_inscricao();
+            if($this->inscricoes_model->set_inscricao()){
+                $this->session->set_flashdata('sucesso', 'Ingresso adquirido com sucesso!');
+            }
             redirect('eventos');
         }
 
     }
 
     public function deletar($id){
-
         $this->acesso->controlar();
 
         if($id == NULL){
             redirect('eventos');
         }
 
-        $this->eventos_model->delete_evento($id);
-        redirect('eventos');
+        if($this->eventos_model->delete_evento($id)){
+            $this->session->set_flashdata('sucesso', 'Evento excluído com sucesso!');
+            redirect('eventos');
+        }
     }
 
 }

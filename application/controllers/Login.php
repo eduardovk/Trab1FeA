@@ -5,9 +5,13 @@ class Login extends CI_Controller{
     public function index(){
 
         $data['title'] = "Fazer Login";
-        $data['erro'] = $this->session->flashdata('erro');
 
+        $data['erro'] = $this->session->flashdata('erro');
+        $this->load->view('templates/msg_erro', $data);
+
+        $this->load->view('templates/header', $data);
         $this->load->view('login/index', $data);
+        $this->load->view('templates/footer');
     }
 
     public function entrar(){
