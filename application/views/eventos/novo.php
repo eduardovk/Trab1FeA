@@ -2,7 +2,7 @@
 <?php echo form_open_multipart('eventos/novo'); ?>
 
 <!-- Page Content -->
-<div class="container container-white">
+<div class="container container-white" style="margin-top: 20px;">
 
     <!-- Titulo Row -->
     <div class="row">

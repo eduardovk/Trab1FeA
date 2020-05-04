@@ -1,5 +1,5 @@
 <!-- Page Content -->
-<div class="container container-white">
+<div class="container container-white" style="margin-top: 20px;">
 
     <?php
     if($admin){

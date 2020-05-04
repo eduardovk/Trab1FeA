@@ -1,7 +1,7 @@
 <?php echo validation_errors(); ?>
 <?php echo form_open('eventos/ingressos/'.$evento['url_amiga']); ?>
 <!-- Page Content -->
-<div class="container container-white">
+<div class="container container-white" style="margin-top: 20px;">
 
     <!-- Heading Row -->
     <div class="row my-4">

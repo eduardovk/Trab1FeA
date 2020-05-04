@@ -36,6 +36,8 @@ class Eventos extends CI_Controller {
         $this->load->model('categoriasIngressos_model');
 
         $data['evento'] = $this->eventos_model->get_eventos($url_amiga);
+
+        $data['nome'] = $this->acesso->logged_user();
         $data['admin'] = $this->acesso->is_admin();
 
         if (empty($data['evento']))
@@ -76,6 +78,9 @@ class Eventos extends CI_Controller {
         $this->acesso->controlar();
 
         $data['title'] = 'Cadastrar Novo Evento';
+
+        $data['nome'] = $this->acesso->logged_user();
+        $data['admin'] = $this->acesso->is_admin();
 
         $this->form_validation->set_rules('titulo', 'Título', 'required');
         $this->form_validation->set_rules('descricao', 'Descrição', 'required');
@@ -122,6 +127,9 @@ class Eventos extends CI_Controller {
         }
 
         $data['evento'] = $this->eventos_model->get_evento_by_id($id);
+
+        $data['nome'] = $this->acesso->logged_user();
+        $data['admin'] = $this->acesso->is_admin();
 
         if (empty($data['evento']))
         {
@@ -190,6 +198,9 @@ class Eventos extends CI_Controller {
 
         $data['evento'] = $this->eventos_model->get_evento_by_id($id);
 
+        $data['nome'] = $this->acesso->logged_user();
+        $data['admin'] = $this->acesso->is_admin();
+
         if (empty($data['evento']))
         {
             show_404();
@@ -221,6 +232,10 @@ class Eventos extends CI_Controller {
         }
 
         $data = $this->input->post();
+
+        $data['nome'] = $this->acesso->logged_user();
+        $data['admin'] = $this->acesso->is_admin();
+
         foreach ($data as $input_key => $input_val) {
             $input_arr = explode("-", $input_key);
             if($input_arr[0] == "ativo" ){
@@ -290,6 +305,9 @@ class Eventos extends CI_Controller {
 
         $data['evento']['data'] = formatar_data($data['evento']['data_hora'], true);
         $data['evento']['hora'] = formatar_hora($data['evento']['data_hora'], false);
+
+        $data['nome'] = $this->acesso->logged_user();
+        $data['admin'] = $this->acesso->is_admin();
 
         $ingressos = $this->categoriasIngressos_model->get_cat_ingressos_by_evento($data['evento']['id']);
         if($ingressos){
