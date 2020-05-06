@@ -7,7 +7,17 @@
     <div class="row my-4">
         <div class="col-md-7">
             <a href="#">
-                <img class="img-fluid rounded mb-3 mb-md-0" style="width: 100%; max-height: 260px; object-fit: cover;" src="<?php echo base_url('assets/img/eventos/'. $evento['imagem']);?>" alt="">
+                <?php
+                if(!empty($evento['imagem'])){
+                    ?>
+                    <img class="img-fluid rounded mb-3 mb-md-0" style="width: 100%; max-height: 260px; object-fit: cover;" src="<?php echo base_url('assets/img/eventos/'. $evento['imagem']);?>" alt="">
+                    <?php
+                }else{
+                    ?>
+                    <img class="img-fluid rounded mb-3 mb-md-0" style="width: 100%; max-height: 260px; object-fit: cover;" src="<?php echo base_url('assets/img/eventos/default.png');?>" alt="">
+                    <?php
+                }
+                ?>
             </a>
         </div>
         <div class="col-md-5">
@@ -20,17 +30,15 @@
     </div>
     <!-- /.row -->
 
-    <?php
-    if(isset($ingressos) && sizeof($ingressos) > 0){
-        ?>
-        <!-- Content Row -->
-        <div class="row">
-            <div class="col-md-12 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">COMPRAR INGRESSO</h5>
-                        <hr>
-                        <?php
+    <!-- Content Row -->
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">COMPRAR INGRESSO</h5>
+                    <hr>
+                    <?php
+                    if(isset($ingressos) && sizeof($ingressos) > 0){
                         foreach($ingressos as $ingresso){
                             if($ingresso['qtd_restante'] < 1){
                                 echo '<p class="card-text">(Esgotado) <s>' . $ingresso['titulo'] .' - R$ '.$ingresso['valor'].'</s></p>';
@@ -48,17 +56,19 @@
                         <label for="nome"><b>Comprar para:</b></label><br>
                         <input type="text" name="nome" id="nome" placeholder="Nome completo do inscrito" style="width: 250px;" required><br><br>
                         <button type="submit" class="btn btn-danger btn-sm">Comprar</button>
-                    </div>
-                </form>
-            </div><br>
-            <?php echo anchor('eventos/', '< Voltar', 'class="btn btn-danger btn-sm"'); ?>
-        </div>
-        <!-- /.col-md-4 -->
+                        <?php
+                    }else{
+                        echo '<h5>Sem ingressos disponíveis no momento.</h5>';
+                    }
+                    ?>
+                </div>
+            </form>
+        </div><br>
+        <?php echo anchor('eventos/', '< Voltar', 'class="btn btn-danger btn-sm"'); ?>
     </div>
-    <!-- /.row -->
-    <?php
-}
-?>
+    <!-- /.col-md-4 -->
+</div>
+<!-- /.row -->
 
 </div>
 <!-- /.container -->

@@ -2,18 +2,20 @@
 class Pages extends CI_Controller
 {
 
-    public function view($page = 'home')
-    {
-        if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php'))
-        {
-            // Whoops, we don't have a page for that!
-            show_404();
+    public function view($page = 'eventos'){
+        if($page != 'eventos'){
+            if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php')){
+                // Whoops, we don't have a page for that!
+                show_404();
+            }
+            $data = array();
+            //capturar nome do usuario e nivel de acesso (caso logado)
+            identificar_usuario($this, $data);
+            //carrega header, msgs de erro, eventos/index e footer
+            carregar_views($this, 'pages/'.$page, $data);
+        }else{
+            redirect('eventos');
         }
-        
-        $data['title'] = ucfirst($page); // Capitalize the first letter
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('pages/'.$page, $data);
-        $this->load->view('templates/footer', $data);
     }
+
 }

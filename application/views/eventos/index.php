@@ -16,7 +16,7 @@
                     if(!empty($evento['imagem'])){
                         ?><img class="img-fluid rounded mb-3 mb-md-0" style="width: 100%; max-height: 360px; object-fit: cover;"  src="<?php echo base_url('assets/img/eventos/'. $evento['imagem']);?>" /><?php
                     }else{
-                        ?><img class="img-fluid rounded mb-3 mb-md-0" style="width: 100%; max-height: 360px; object-fit: cover;"  src="" alt=""><?php
+                        ?><img class="img-fluid rounded mb-3 mb-md-0" style="width: 100%; max-height: 360px; object-fit: cover;"  src="<?php echo base_url('assets/img/eventos/default.png');?>" alt=""><?php
                     }
                     ?>
                 </a>

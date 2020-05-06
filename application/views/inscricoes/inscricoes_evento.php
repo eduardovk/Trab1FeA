@@ -5,7 +5,17 @@
     <div class="row my-4">
         <div class="col-md-7">
             <a href="#">
-                <img class="img-fluid rounded mb-3 mb-md-0" style="width: 100%; max-height: 360px; object-fit: cover;" src="<?php echo base_url('assets/img/eventos/'. $evento['imagem']);?>" alt="">
+                <?php
+                if(!empty($evento['imagem'])){
+                    ?>
+                    <img class="img-fluid rounded mb-3 mb-md-0" style="width: 100%; max-height: 360px; object-fit: cover;" src="<?php echo base_url('assets/img/eventos/'. $evento['imagem']);?>" alt="">
+                    <?php
+                }else{
+                    ?>
+                    <img class="img-fluid rounded mb-3 mb-md-0" style="width: 100%; max-height: 360px; object-fit: cover;" src="<?php echo base_url('assets/img/eventos/default.png');?>" alt="">
+                    <?php
+                }
+                ?>
             </a>
         </div>
         <div class="col-md-5">
