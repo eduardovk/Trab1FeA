@@ -7,7 +7,7 @@ class Inscricoes extends CI_Controller {
         $this->load->helper('url_helper');
     }
 
-    
+
     public function index(){
         //impede acesso se nao for usuario logado
         if(!$this->acesso->logged_user()){
@@ -17,12 +17,16 @@ class Inscricoes extends CI_Controller {
         $data['inscricoes'] = $this->inscricoes_model->get_inscricoes_by_usuario($id_usuario);
         //para cada inscricao, formata valor e registro de pago
         foreach($data['inscricoes'] as &$inscricao){
-            $inscricao['valor'] = formatar_moeda($inscricao['valor'], true);
-            if($inscricao['pago'] == 1){
-                $inscricao['pago'] = "Sim";
+            if($inscricao['valor'] > 0){
+                if($inscricao['pago'] == 1){
+                    $inscricao['pago'] = "Sim";
+                }else{
+                    $inscricao['pago'] = "Não";
+                }
             }else{
-                $inscricao['pago'] = "Não";
+                $inscricao['pago'] = "Gratuito";
             }
+            $inscricao['valor'] = formatar_moeda($inscricao['valor'], true);
         }
         //capturar nome do usuario e nivel de acesso (caso logado)
         identificar_usuario($this, $data);
@@ -42,12 +46,16 @@ class Inscricoes extends CI_Controller {
         $data['evento']['hora'] = formatar_hora($data['evento']['data_hora'], false);
         //para cada inscricao, formata valor e registro de pago
         foreach($data['inscricoes'] as &$inscricao){
-            $inscricao['valor'] = formatar_moeda($inscricao['valor'], true);
-            if($inscricao['pago'] == 1){
-                $inscricao['pago'] = "Sim";
+            if($inscricao['valor'] > 0){
+                if($inscricao['pago'] == 1){
+                    $inscricao['pago'] = "Sim";
+                }else{
+                    $inscricao['pago'] = "Não";
+                }
             }else{
-                $inscricao['pago'] = "Não";
+                $inscricao['pago'] = "Gratuito";
             }
+            $inscricao['valor'] = formatar_moeda($inscricao['valor'], true);
         }
         //capturar nome do usuario e nivel de acesso (caso logado)
         identificar_usuario($this, $data);
